@@ -1,5 +1,5 @@
 import { Reducer } from "../types";
-import { Post } from "../../demo/types";
+import { Post } from "../../app/demo/types";
 
 type State = {
   posts: Post[];
@@ -23,7 +23,6 @@ export const reducer: Reducer<State, Actions> = (
       return { ...state, posts: [...state.posts, { id, content }] };
     }
     case "REMOVE_POST": {
-      console.log(action.id);
       const newPosts = state.posts.filter((post) => post.id !== action.id);
       return {
         ...state,
