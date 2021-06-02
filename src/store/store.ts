@@ -1,4 +1,4 @@
-import { Action, Reducer, Store, Dispatch } from "./types";
+import { Action, Reducer, Store, Dispatch, AugmentStore } from "./types";
 
 const INIT = "@@_INIT";
 
@@ -10,20 +10,24 @@ if (devTools) {
 
 export function createStore<S, A extends Action>(
   reducer: Reducer<S, A>,
-  preloadedState?: S
+  init?: S,
+  augment?: AugmentStore
 ): Store<S, A> {
-  let state = preloadedState;
+  if (augment) {
+    return augment(createStore)(reducer, init);
+  }
+
+  let state = init;
+  let isDispatching = false;
   const listeners: Array<() => void> = [];
 
-  let isDispatching = false;
-
   if (devTools) {
-    devTools.send({ type: INIT }, preloadedState);
+    devTools.send({ type: INIT }, init);
   }
 
   function getState() {
     if (isDispatching) {
-      throw new Error("Cannot call getState() while dispatching");
+      throw new Error("Cannot call getState() while dispatching.");
     }
     return state;
   }
@@ -55,8 +59,7 @@ export function createStore<S, A extends Action>(
       isDispatching = false;
     }
 
-    for (let i = 0; i < listeners.length; i++) {
-      const listener = listeners[i];
+    for (const listener of listeners) {
       listener();
     }
 
