@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "serve": "webpack serve",
-    "build": "webpack --mode development"
+    "serve": "parcel index.html -p 3000"
   },
   "license": "MIT",
   "devDependencies": {
@@ -20,20 +19,17 @@
     "@types/redux": "^3.6.0",
     "babel-loader": "^8.2.2",
     "css-loader": "^5.2.5",
+    "parcel-bundler": "^1.12.5",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.4",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "redux": "^4.1.0",
     "sass": "^1.34.0",
     "sass-loader": "^11.1.1",
     "style-loader": "^2.0.0",
     "ts-loader": "^9.2.2",
-    "typescript": "^4.3.2",
-    "webpack": "^5.37.1",
-    "webpack-cli": "^4.7.0",
-    "webpack-dev-server": "^3.11.2"
-  },
-  "dependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-redux": "^7.2.4",
-    "react-router-dom": "^5.2.0",
-    "redux": "^4.1.0"
+    "typescript": "^4.3.2"
   }
 }
