@@ -1,34 +1,28 @@
 import { Reducer } from "../types";
-import { Post } from "../../app/demo/types";
+import { Post } from "../../app/demo/posts/types";
 
-type State = {
-  posts: Post[];
-};
+type Posts = Post[];
 
 type Actions =
-  | { type: "ADD_POST"; post: Post }
-  | { type: "REMOVE_POST"; id: string };
+  | { type: "POST_ADD"; post: Post }
+  | { type: "POST_REMOVE"; id: string };
 
-export const init: State = {
-  posts: [],
-};
+export const init: Posts = [];
 
-export const reducer: Reducer<State, Actions> = (
-  state: State,
+export const reducer: Reducer<Posts, Actions> = (
+  state: Posts = init,
   action: Actions
 ) => {
   switch (action.type) {
-    case "ADD_POST": {
+    case "POST_ADD": {
       const { id, content } = action.post;
-      return { ...state, posts: [...state.posts, { id, content }] };
+      return [...state, { id, content }];
     }
-    case "REMOVE_POST": {
-      const newPosts = state.posts.filter((post) => post.id !== action.id);
-      return {
-        ...state,
-        posts: newPosts,
-      };
+    case "POST_REMOVE": {
+      const nextPosts = state.filter((post) => post.id !== action.id);
+      return nextPosts;
     }
+    default:
+      return state;
   }
-  return state;
 };
