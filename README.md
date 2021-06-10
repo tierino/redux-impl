@@ -1,5 +1,5 @@
 # redux-impl
-Primitive Redux store implementation with TypeScript. 
+Simple Redux store implementation with TypeScript. 
 
 Includes Redux DevTools and a tiny React demo.
 
