@@ -1,7 +1,7 @@
 # redux-impl
 Simple Redux store implementation with TypeScript. 
 
-Includes Redux DevTools and a tiny React demo.
+Includes a React demo (with Redux DevTools!).
 
 ### Scripts
 - Run the demo app: `yarn serve`
